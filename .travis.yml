@@ -13,3 +13,10 @@ after_success:
   - docker build -t eilyart/multi-nginx ./nginx
   - docker build -t eilyart/multi-server ./server
   - docker build -t eilyart/multi-worker ./worker
+  # Log in to docker CLI 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push eilyart/multi-client
+  - docker push eilyart/multi-nginx
+  - docker push eilyart/multi-server
+  - docker push ilyart/multi-worker
